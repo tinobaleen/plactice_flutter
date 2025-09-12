@@ -25,3 +25,4 @@ extension type ChatMesssageServiceClient (connect.Transport _transport) {
     );
   }
 }
+
