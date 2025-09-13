@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'src/states/notifer.dart';
-
+import 'src/widgets/chatlist.dart' as chat;
 
 void main() {
 
@@ -67,6 +67,7 @@ class MyHomePage extends ConsumerWidget {
               ElevatedButton(onPressed:(){
                 appStateNotifier.nextCount();
             }, child: Text('Next')),
+            const chat.ChatList(key: ValueKey("cahtList"),),
           ],
         ),
       ),
@@ -83,6 +84,8 @@ class Counter extends ConsumerWidget {
     void toLastName() {
       appStateNotifier.lastName();
     }
+
+    
     return Row(children: [
       Text( 'Count: ${appState.count}'),
       ElevatedButton(onPressed: toLastName, child: Text('Increment'))
