@@ -8,7 +8,7 @@ import '../gen/to_client/v1/to_client.pb.dart' as $pb;
 import 'dart:io';
 
 final TranceProtClient = Transport(
-  baseUrl: "http://localhost:8080",
+  baseUrl: "http://10.0.2.2:8080",
   codec: const buf.ProtoCodec(),
   httpClient: createHttpClient(),
 );

@@ -60,14 +60,14 @@ class MyHomePage extends ConsumerWidget {
       ),
       body: Center(
         child: Column(
-          children: [
-            Text('A random'),
+        children: [
+            Text('User name'),
             Text(appState.current),
-              Counter(),
-              ElevatedButton(onPressed:(){
-                appStateNotifier.nextCount();
-            }, child: Text('Next')),
-            const chat.ChatList(key: ValueKey("cahtList"),),
+            Counter(),
+            ElevatedButton(onPressed:(){
+                appStateNotifier.lastName();
+            }, child: Text('show lastname')),
+            Expanded(child: const chat.ChatList(key: ValueKey("chat_list_key"))),
           ],
         ),
       ),
@@ -81,14 +81,13 @@ class Counter extends ConsumerWidget {
     final appState = ref.watch(allStateProvider);
     final appStateNotifier = ref.read(allStateProvider.notifier);
 
-    void toLastName() {
-      appStateNotifier.lastName();
+    void incriment() {
+      appStateNotifier.nextCount();
     }
 
-    
     return Row(children: [
-      Text( 'Count: ${appState.count}'),
-      ElevatedButton(onPressed: toLastName, child: Text('Increment'))
+      Text( 'user name: ${appState.count}'),
+      ElevatedButton(onPressed: incriment, child: Text('incriment'))
     ],);
 
   }

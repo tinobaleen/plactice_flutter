@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:namer_app/src/gen/to_client//v1/to_client.pb.dart';
+import 'package:namer_app/src/gen/to_client/v1/to_client.pb.dart';
 import '../tranceport/trancepot.dart' as tranceport;
 import '../states/notifer.dart' as provider;
 import '../widgets/chatMessage.dart';
@@ -33,16 +33,16 @@ class _ChatListState extends ConsumerState<ChatList> {
 
     try {
       //サーバーへのストリーミング  
-      final streaming = tranceport.chatClient.messageRequest(ChatMessageRequest(
+      final streaming = tranceport.chatClient.messageRequest( ChatMessageRequest(
         chatId: "",
         content: message
-      ));
+      ),
+      );
 
-      await for (var msg in streaming) {
-        ref.read(provider.allStateProvider.notifier).appendMessage(msg);
-      }
+
+      ref.read(provider.allStateProvider.notifier).insertMessageWidet(streaming);
     } catch(e) {
-      print('message error');
+      print(e.toString());
     }
   }
 
@@ -57,9 +57,8 @@ class _ChatListState extends ConsumerState<ChatList> {
     //　プロバイダの状態を監視
     final allState = ref.watch(provider.allStateProvider);
     //CahtMessageResponseのリストをChatMessageウィジェットのリストに変換
-    final List<ChatMessage> msgArray = allState.messages.map((elm) {
-      return ChatMessage(content: elm.content, chatId: elm.chatId, msgType: ChatMessage.msgTypeTable[elm.msgType.value] ?? "不明");
-    }).toList();
+    final List<ChatMessage> msgArray = allState.chatMessage;
+
 
     return Column(
       children: [
