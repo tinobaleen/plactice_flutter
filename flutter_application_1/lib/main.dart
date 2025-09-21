@@ -56,17 +56,14 @@ class MyHomePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Namer App'),
+        title: Text('Local LLM (gpt-oss:20b)'),
       ),
       body: Center(
-        child: Column(
+        child: Column(// 基軸とななる列、
         children: [
-            Text('User name'),
-            Text(appState.current),
-            Counter(),
-            ElevatedButton(onPressed:(){
-                appStateNotifier.lastName();
-            }, child: Text('show lastname')),
+            IconButton(onPressed: () {
+              appStateNotifier.allDelete();
+            }, icon: Icon(Icons.delete_forever_outlined)),
             Expanded(child: const chat.ChatList(key: ValueKey("chat_list_key"))),
           ],
         ),

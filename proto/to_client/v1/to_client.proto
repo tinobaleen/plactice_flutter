@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package conenctrpc.to_client.v1;
+option go_package = "bff/internal/gen/to_client";
+
+
+message ChatMessageRequest {
+    MessageType msg_type = 1;
+    string chat_id = 2;
+    string content = 3;
+}
+
+
+enum MessageType {
+    SYSTEM_MESSAGE = 0;
+    HUMAN_MESSAGE = 1;
+}
+
+
+message ChatMessageResponse {
+    MessageType msg_type = 1;
+    string chat_id =2;
+    string content =3;
+}
+
+
+
+service ChatMesssageService {
+    rpc MessageRequest(ChatMessageRequest) returns (stream ChatMessageResponse);
+}
+
+
+
+

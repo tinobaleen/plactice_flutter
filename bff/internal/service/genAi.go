@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	gpt_oss_20b = "gpt-oss:20b"
+	gpt_oss_20b = "gpt-oss"
 )
 
 func NewLLM() (ai.Model, *genkit.Genkit, error) {
@@ -18,6 +18,7 @@ func NewLLM() (ai.Model, *genkit.Genkit, error) {
 	//initialize genkit with the google ai plugin
 
 	ollama := &o_plgin.Ollama{ServerAddress: "http://127.0.0.1:11434", Timeout: 300}
+
 	g := genkit.Init(ctx, genkit.WithPlugins(ollama))
 
 	model := ollama.DefineModel(
@@ -26,7 +27,14 @@ func NewLLM() (ai.Model, *genkit.Genkit, error) {
 			Name: gpt_oss_20b,
 			Type: "chat", // "chat" or "generate"
 		},
-		nil,
+		&ai.ModelOptions{
+			Supports: &ai.ModelSupports{
+				Media:      true,
+				Multiturn:  true,
+				Tools:      true,
+				SystemRole: true,
+			},
+		},
 	)
 
 	return model, g, nil

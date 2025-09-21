@@ -22,7 +22,9 @@ class InputBox extends StatelessWidget {
     return Container(
       color: Colors.white,
       padding:const EdgeInsets.symmetric(horizontal:8.0),
-      child: [
+      child:Row(
+        
+        children:  [
         Expanded(
           child: TextField(
             controller: controller,
@@ -31,14 +33,15 @@ class InputBox extends StatelessWidget {
               border: InputBorder.none, 
             ),
           onSubmitted: (_) => onSend(),
+          ),
+         
         ),
-        const SizedBox(width: 8.0),
-        IconButton(icon: const Icon(Icons.send),
+         const SizedBox(width: 8.0),
+          IconButton(icon: const Icon(Icons.send),
           onPressed: onSend,
-        )
-        )
+          ),
       ], 
-    );
+    ));
   }
 
   

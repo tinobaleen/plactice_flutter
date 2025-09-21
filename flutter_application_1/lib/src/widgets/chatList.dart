@@ -11,7 +11,6 @@ import '../widgets/chatMessage.dart';
 //ChatListをConsumerStatefullWidgetに変換し、状態の（入力内容）を管理します
 class ChatList extends ConsumerStatefulWidget {
   const ChatList({required super.key});
-
   @override
   ConsumerState<ChatList> createState() => _ChatListState();
 }
@@ -39,7 +38,6 @@ class _ChatListState extends ConsumerState<ChatList> {
       ),
       );
 
-
       ref.read(provider.allStateProvider.notifier).insertMessageWidet(streaming);
     } catch(e) {
       print(e.toString());
@@ -57,7 +55,7 @@ class _ChatListState extends ConsumerState<ChatList> {
     //　プロバイダの状態を監視
     final allState = ref.watch(provider.allStateProvider);
     //CahtMessageResponseのリストをChatMessageウィジェットのリストに変換
-    final List<ChatMessage> msgArray = allState.chatMessage;
+    final List<ChatMessage> msgArray = allState.chatMessages;
 
 
     return Column(

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:namer_app/src/gen/to_client/v1/to_client.pbserver.dart';
 import 'package:namer_app/src/widgets/chatMessage.dart';
-import '../gen/to_client/v1/to_client.pb.dart' as $pb;
+import 'package:namer_app/src/gen/to_client/v1/to_client.pb.dart' as $pb;
 
 
 
