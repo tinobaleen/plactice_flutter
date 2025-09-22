@@ -1,3 +1,28 @@
 syntax = "proto3";
 
 
+package grpc.to_llm.v1;
+option go_package = "bff/internal/gen/to_client";
+
+
+
+message SystemMessage {
+    
+    string content = 1;
+}
+
+message UserMessage {
+    string content = 1;
+}
+
+message Message {
+    oneOf MessageContent {
+        UserMessage content = 0;
+        SystemMessage content = 1;
+    }
+}
+
+message LlmRequest {
+    string context = 1;
+    
+}
