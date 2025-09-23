@@ -11,10 +11,15 @@ plugins:
     out: ../../../bff/internal/gen/to_llm/v1
     opt: paths=source_relative
 
-  - remote: buf.build/gprc/go:v1.5.1
+  - remote: buf.build/connectrpc/go:v1.18.1
     out: ../../../bff/internal/gen/to_llm/v1
     opt: paths=source_relative
 
   - remote: buf.build/protocolbuffers/python:v32.1
     out: ../../../services/llmServer/src/gen
-    
+  
+  - remote: buf.build/protocolbuffers/pyi:v32.1
+    out: ../../../services/llmServer/src/gen
+
+  - remote: buf.build/grpc/python:v1.75.0
+    out: ../../../services/llmServer/src/gen

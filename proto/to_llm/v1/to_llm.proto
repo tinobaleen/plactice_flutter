@@ -2,29 +2,23 @@ syntax = "proto3";
 
 
 package grpc.to_llm.v1;
-option go_package = "bff/internal/gen/to_client";
 
 
-message SystemMessage {
-    string content = 1;
-}
-
-message UserMessage {
-    string content = 1;
-}
+import "google/protobuf/empty.proto";
 
 message Message {
-    oneOf MessageContent {
-        UserMessage content = 1;
-        SystemMessage content = 2;
-    }
+   string message = 1;
 }
 
 message LlmRequest {
-    repeated Message allMessage = 1;
-    Message newMessage = 2;
+    repeated Message all_message = 1;
+    Message new_message = 2;
 }
 
+message Health {
+    string status = 1;
+    bool ok = 2;
+}
 
 message LlmResponse {
     Message content = 1;
@@ -32,6 +26,7 @@ message LlmResponse {
 
 
 service LlmService {
-    rpc LlmMessageReqeust(LlmRequest) returns (stream LlmResponse);
+    rpc LlmMessageRequest(LlmRequest) returns (stream LlmResponse);
+    rpc HealthCheck(google.protobuf.Empty) returns(Health);
 }
 
