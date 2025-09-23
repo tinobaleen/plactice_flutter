@@ -1,0 +1,20 @@
+version: v2
+
+managed:
+  enabled: true
+  override:
+    - file_option: go_package
+      value: bff/internal/gen/to_llm/v1
+    
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.36.8
+    out: ../../../bff/internal/gen/to_llm/v1
+    opt: paths=source_relative
+
+  - remote: buf.build/gprc/go:v1.5.1
+    out: ../../../bff/internal/gen/to_llm/v1
+    opt: paths=source_relative
+
+  - remote: buf.build/protocolbuffers/python:v32.1
+    out: ../../../services/llmServer/src/gen
+    
